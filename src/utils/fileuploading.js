@@ -16,9 +16,11 @@ const uploadOnCloudnary=async (localFilePath)=>{
             resorce_type:"auto"
         }
         )
-        console.log("File is upload on Cloudnary",
-          responce.url) ;
-          return responce
+        // console.log("File is upload on Cloudnary",
+        //   responce.url) ;
+        fs.unlinkSync(localFilePath)////remove the locally saved  tempory file when file is upload succesfully on cloudnary then file is remove automatically 
+         return responce
+
     }
     catch(err){
     fs.unlinkSync(localFilePath)//remove the locally saved  tempory file as the operation faild
