@@ -1,7 +1,6 @@
 import mongoose ,{Schema} from "mongoose";
 import jwt from "json-web-token"
 import bcrpt from "bcrypt"
-import { emit } from "nodemon";
 const userSchema= new Schema({
     username:{
         type:String,
@@ -49,7 +48,7 @@ userSchema.pre("save",async function(next){
     if(!this.isModified('password')){
         return next();
     }
-    this.password=bcrpt.hash(this.password,8);
+    this.password= await bcrpt.hash(this.password,8);
     next()
 })
 
